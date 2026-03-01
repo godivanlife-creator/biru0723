@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biru｜GodiVanLife</title>
+
+<style>
+:root {
+    --main-color: #4A90E2;
+    --bg1: #eaf4ff;
+    --bg2: #d6eaff;
+    --accent: #2f6fd1;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'PingFang TC','Microsoft JhengHei',sans-serif;
+    background: linear-gradient(-45deg,var(--bg1),var(--bg2),#f0f8ff,var(--bg1));
+    background-size: 400% 400%;
+    animation: bgMove 14s ease infinite;
+    text-align: center;
+}
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 420px;
+    margin: auto;
+    background: white;
+    padding: 28px;
+    border-radius: 35px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    animation: floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 6px solid var(--main-color);
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: 0.4s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.06);
+}
+
+h1 {
+    margin: 10px 0;
+    color: var(--main-color);
+    font-size: 28px;
+}
+
+.tagline {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.info-card {
+    background: #f0f7ff;
+    padding: 18px;
+    border-radius: 18px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 30px;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.btn-call {
+    background: var(--main-color);
+}
+
+.btn-call:hover {
+    background: var(--accent);
+}
+
+.btn-sms {
+    background: #007aff;
+}
+
+.btn-sms:hover {
+    background: #005ecc;
+}
+
+.instagram-link {
+    display: block;
+    margin-top: 15px;
+    padding: 12px;
+    background: linear-gradient(45deg,#f09433,#dc2743,#bc1888);
+    color: white;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 25px;
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- 請把下面圖片網址改成你的 GitHub raw 或 Pages 連結 -->
+<img src="https://raw.githubusercontent.com/你的帳號/你的repo/main/biru.jpg" 
+     alt="Biru" 
+     class="profile-img">
+
+<h1>Biru</h1>
+<p class="tagline">GodiVanLife 智慧守護系統</p>
+
+<div class="info-card">
+    <div class="info-item">💙 特色：愛撒嬌、大塊頭、姐寶</div>
+</div>
+
+<button class="btn btn-sms" onclick="sendSMSLocation()">
+📍 即時定位通報
+</button>
+
+<a href="tel:0919387235" class="btn btn-call">
+📞 撥打主人 1
+</a>
+
+<a href="tel:0988505490" class="btn btn-call">
+📞 撥打主人 2
+</a>
+
+<a href="https://www.instagram.com/jrt_biru20230723" 
+   target="_blank" 
+   class="instagram-link">
+看 Biru 的 IG 📸
+</a>
+
+<footer>
+POWERED BY GODIVANLIFE
+</footer>
+
+</div>
+
+<script>
+function sendSMSLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const mapUrl = "https://www.google.com/maps?q=" + lat + "," + lng;
+            const message = encodeURIComponent("【尋寵通報】我發現 Biru！目前位置：" + mapUrl);
+            window.location.href = "sms:0919387235?body=" + message;
+        });
+    } else {
+        window.location.href = "sms:0919387235?body=" + 
+        encodeURIComponent("【尋寵通報】我發現 Biru，請與我聯繫。");
+    }
+}
+</script>
+
+</body>
+</html>
